@@ -1,0 +1,263 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://customersapp.appspot.com/_ah/api",
+  "name" : "userloginendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://customersapp.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "customer.com",
+  "ownerName" : "customer.com",
+  "packagePath" : "entity",
+  "methods" : {
+    "userloginendpoint.login" : {
+      "path" : "login",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.login",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.getUserLogin" : {
+      "path" : "userlogin/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.getUserLogin",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.updateUserLogin" : {
+      "path" : "userlogin",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.updateUserLogin",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.insertUserLogin" : {
+      "path" : "userlogin",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.insertUserLogin",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.logout" : {
+      "path" : "logout",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.logout",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.initData" : {
+      "path" : "initData",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.initData",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "userloginendpoint.listUserLogin" : {
+      "path" : "userlogin",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.listUserLogin",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "count" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "userloginendpoint.removeUserLogin" : {
+      "path" : "userlogin/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.UserLoginEndpoint.removeUserLogin",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "UserLogin" : {
+        "id" : "UserLogin",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "userName" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_UserLogin" : {
+        "id" : "CollectionResponse_UserLogin",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "UserLogin"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.customer.services.UserLoginEndpoint.login" : {
+        "request" : {
+          "$ref" : "UserLogin"
+        },
+        "response" : {
+          "$ref" : "UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.getUserLogin" : {
+        "response" : {
+          "$ref" : "UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.updateUserLogin" : {
+        "request" : {
+          "$ref" : "UserLogin"
+        },
+        "response" : {
+          "$ref" : "UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.insertUserLogin" : {
+        "request" : {
+          "$ref" : "UserLogin"
+        },
+        "response" : {
+          "$ref" : "UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.logout" : {
+        "request" : {
+          "$ref" : "UserLogin"
+        },
+        "response" : {
+          "$ref" : "UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.initData" : {
+      },
+      "com.customer.services.UserLoginEndpoint.listUserLogin" : {
+        "response" : {
+          "$ref" : "CollectionResponse_UserLogin"
+        }
+      },
+      "com.customer.services.UserLoginEndpoint.removeUserLogin" : {
+      }
+    }
+  }
+}

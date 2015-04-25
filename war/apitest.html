@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head ng-app="testApp">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Famous Customers</title>
+    <script src="/Scripts/angular.min.js"></script>
+     
+</head>
+<body >
+
+    <div id="login">
+       <input id="loginButton" type="button" value="Login"/>
+    </div>
+    <form action="javascript:void(0);">
+        <h2>List Customers</h2>
+        <div><input id="listCustomer" type="submit" value="List Customers"></div>
+    </form>
+    <div id="listCustomersResult"></div>
+    
+<!--     <script type="text/javascript"> -->
+//         function init() {
+// 			getPagedResource(0,10);
+//         }
+        
+// 		function getPagedResource(baseResource, pageIndex, pageSize) {
+// 			var serviceBase = 'https://customersapp.appspot.com/_ah/api';
+// 	    	  gapi.client.load('customerendpoint', 'v1', function() {
+// 	    		  var requestData = {};
+// 	          	requestData.cursor = null;
+// 	          	requestData.count = pageSize;
+// 	  	    	gapi.client.customerendpoint.getCustomersSumary(requestData).execute(function(resp) {
+// 	          		console.log(resp);
+// 	          		if (!resp.code) {
+//         			resp.items = resp.items || [];
+//         			var result = "";
+//         			for (var i=0;i<resp.items.length;i++) {
+//         				result = result+ resp.items[i].id + "..." + "<b>" + resp.items[i].firstName + "</b>" + "[" + resp.items[i].lastName + "]" + "<br/>";
+//         			}
+//         			document.getElementById('listCustomersResult').innerHTML = result;
+//         		}
+// 	          	});
+// 	    		}, serviceBase);
+// 	      }
+        
+//         //List Customers function that will execute the listCustomer call
+//         function listCustomers() {
+//         	gapi.client.customerendpoint.listCustomer().execute(function(resp) {
+//         		if (!resp.code) {
+//         			resp.items = resp.items || [];
+//         			var result = "";
+//         			for (var i=0;i<resp.items.length;i++) {
+//         				result = result+ resp.items[i].id + "..." + "<b>" + resp.items[i].firstName + "</b>" + "[" + resp.items[i].lastName + "]" + "<br/>";
+//         			}
+//         			document.getElementById('listCustomersResult').innerHTML = result;
+//         		}
+//         	});
+//         }
+<!--     </script> -->
+   <script src="https://apis.google.com/js/client.js?onload=init"></script>
+</body>
+</html>
