@@ -35,6 +35,19 @@
 						
 					}, AppConstant.ROOT_API);
 			    	
+			    	if (!AppConstant.STATE_ENDPOINT_LOADED) {
+			    		gapi.client.load('stateendpoint', AppConstant.ENDPOINT_VERSION, function() {
+							AppConstant.STATE_ENDPOINT_LOADED = true;
+							hwdefer.resolve(gapi);
+							console.log('stateendpoint loaded: ' + AppConstant.CUSTOMER_ENDPOINT_LOADED);
+							if (--AppConstant.ENDPOINT_LOADED_NUM == 0) {
+								console.log('Loaded all clouds.');
+								AppConstant.ALL_ENDPOINT_LOADED = true;
+							}
+							
+						}, AppConstant.ROOT_API);
+			    	}
+			    	
 			    	var chain = hwdefer.promise;
 					
 					return chain;
