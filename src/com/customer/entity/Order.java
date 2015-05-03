@@ -11,9 +11,9 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.IgnoreSave;
+import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Load;
 import com.googlecode.objectify.annotation.OnLoad;
-import com.googlecode.objectify.annotation.Parent;
 
 /**
  * The Class Order.
@@ -26,6 +26,7 @@ public class Order {
 	private Long id;
     
     /** The Product. */
+	@Index
     private String product;
     
     /** The Price. */
@@ -35,6 +36,7 @@ public class Order {
     private Integer quantity;
     
     /** The date. */
+    @Index
     private Date date;
     
     /** The customer id. */
@@ -44,7 +46,8 @@ public class Order {
     
     /** The customer. */
     @Load
-    @Parent
+    //@Parent
+    @Index
     private Key<Customer> customerKey;
     
     /** The customer. */
@@ -58,7 +61,8 @@ public class Order {
     @OnLoad 
     public void deKey() {
     	if (customerKey != null) {
-    		customer = ofy().load().type(Customer.class).id(customerKey.getId()).get();
+    		//customer = ofy().load().type(Customer.class).id(customerKey.getId()).get();
+    		customerId = ofy().load().type(Customer.class).id(customerKey.getId()).get().getId();
     	}
     }
 
@@ -262,5 +266,10 @@ public class Order {
 		this.customer = customer;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Order [id=" + this.id + ", product=" + this.product + ", price=" + this.price + ", quantity="
+				+ this.quantity + ", date=" + this.date + ", customerId=" + this.customerId + "]";
+	}
+
 }

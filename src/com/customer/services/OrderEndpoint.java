@@ -34,9 +34,14 @@ public class OrderEndpoint {
 	@ApiMethod(name = "listOrder")
 	public CollectionResponse<Order> listOrder(
 			@Nullable @Named("cursor") String cursorString,
-			@Nullable @Named("count") Integer count) {
+			@Nullable @Named("count") Integer count,
+			@Nullable @Named("customerId") Long customerId) {
 
 		Query<Order> query = ofy().load().type(Order.class);
+		if (customerId != null ) {
+			Key<Customer> key =  Key.create(Customer.class, customerId);
+			query = ofy().load().type(Order.class).filter("customerKey", key);
+		}
 		if (count != null)
 			query.limit(count);
 		if (cursorString != null && cursorString != "") {

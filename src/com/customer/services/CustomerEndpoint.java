@@ -82,9 +82,17 @@ public class CustomerEndpoint {
 		// Exception
 		// that it is already present
 		if (customer.getId() != null) {
-			if (findRecord(customer.getId()) != null) {
-				throw new ConflictException("Object already exists");
+			if (customer.getId() == 0) {
+				customer.setId(null);
+			} else {
+				if (findRecord(customer.getId()) != null) {
+					throw new ConflictException("Object already exists");
+				}
 			}
+		}
+		Key<State> key = Key.create(State.class, customer.getStateId());
+		if (key != null) {
+			customer.setStateKey(key);
 		}
 		// Since our @Id field is a Long, Objectify will generate a unique value
 		// for us
@@ -104,6 +112,10 @@ public class CustomerEndpoint {
 	public Customer updateCustomer(Customer customer) throws NotFoundException {
 		if (findRecord(customer.getId()) == null) {
 			throw new NotFoundException("Customer Record does not exist");
+		}
+		Key<State> key = Key.create(State.class, customer.getStateId());
+		if (key != null) {
+			customer.setStateKey(key);
 		}
 		ofy().save().entity(customer).now();
 		return customer;

@@ -5,6 +5,9 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import com.customer.common.AppConstants;
 import com.google.api.server.spi.config.AnnotationBoolean;
 import com.google.api.server.spi.config.ApiResourceProperty;
@@ -16,7 +19,6 @@ import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.IgnoreSave;
 import com.googlecode.objectify.annotation.Load;
 import com.googlecode.objectify.annotation.OnLoad;
-import com.googlecode.objectify.annotation.Parent;
 
 /**
  * The Class Customer.
@@ -30,6 +32,7 @@ public class Customer {
 	
 	/** The id. */
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
     
     /** The First name. */
@@ -49,7 +52,7 @@ public class Customer {
     
     /** The State. */
     @Load
-    @Parent
+//    @Parent
     private Key<State> stateKey;
     
     /** The state id. */
@@ -72,6 +75,7 @@ public class Customer {
     @Ignore
     @IgnoreSave
     private List<Order> orders;
+//    private List<Key<Order>> orders = new ArrayList<Key<Order>>();
     
     /**
      * De key.
@@ -80,6 +84,12 @@ public class Customer {
     private void deKey() {
     	if (stateKey != null) {
     		state = ofy().load().type(State.class).id(stateKey.getId()).get();
+    		stateId = state.getId();
+    		//orders = ofy().load().type(Order.class).ancestor(this).limit(AppConstants.MAX_RECORDS).list();
+    		orders = ofy().load().type(Order.class).filter("customerKey", this).filter("product", "IPhone 5").limit(AppConstants.MAX_RECORDS).list();
+//    		for (Order order : orders) {
+//				System.out.println(order.toString());
+//			}
 		}
     }
     
@@ -330,7 +340,7 @@ public class Customer {
 	 * @return the orders
 	 */
 	public final List<Order> getOrders() {
-		this.orders = ofy().load().type(Order.class).ancestor(this).limit(AppConstants.MAX_RECORDS).list();
+		//this.orders = ofy().load().type(Order.class).ancestor(this).limit(AppConstants.MAX_RECORDS).list();
 		return this.orders;
 	}
 
