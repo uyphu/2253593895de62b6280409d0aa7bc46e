@@ -19,6 +19,7 @@ AppConstant.SCOPE = 'https://www.googleapis.com/auth/userinfo.email';
 
 /** The Constant ROOT_API. */
 AppConstant.ROOT_API = 'https://customersapp.appspot.com/_ah/api';//'//' + window.location.host + '/_ah/api';
+//AppConstant.ROOT_API = 'http://localhost:9898/_ah/api';//'//' + window.location.host + '/_ah/api';
 
 /** The Constant APP_NAME. */
 AppConstant.APP_NAME = 'customersApp';

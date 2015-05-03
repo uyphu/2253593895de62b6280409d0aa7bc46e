@@ -39,7 +39,7 @@
 			    		gapi.client.load('stateendpoint', AppConstant.ENDPOINT_VERSION, function() {
 							AppConstant.STATE_ENDPOINT_LOADED = true;
 							hwdefer.resolve(gapi);
-							console.log('stateendpoint loaded: ' + AppConstant.CUSTOMER_ENDPOINT_LOADED);
+							console.log('stateendpoint loaded: ' + AppConstant.STATE_ENDPOINT_LOADED);
 							if (--AppConstant.ENDPOINT_LOADED_NUM == 0) {
 								console.log('Loaded all clouds.');
 								AppConstant.ALL_ENDPOINT_LOADED = true;
@@ -120,13 +120,23 @@
 		factory.getCustomers = function (pageIndex, pageSize) {
             return getPagedResource('customers', pageIndex, pageSize);
         }
+		
+		factory.getCustomer = function (id) {
+            //then does not unwrap data so must go through .data property
+            //success unwraps data automatically (no need to call .data property)
+			var p = $q.defer();
+			var requestData = {};
+			requestData.id = id;
+			gapi.client.customerendpoint.getCustomer(requestData).execute(function(resp) {
+				if (resp != null) {
+					p.resolve(resp.result)
+				}
+			});
+			return p.promise;
+        };
 
 
         factory.getStates = function () {
-//            return $http.get(serviceBase + 'states').then(
-//                function (results) {
-//                    return results.data;
-//                });
         	var data = {};
 			var p=$q.defer();
 			var requestData = {};
@@ -148,10 +158,13 @@
         };
 
         factory.insertCustomer = function (customer) {
-            return $http.post(serviceBase + 'postCustomer', customer).then(function (results) {
-                customer.id = results.data.id;
-                return results.data;
-            });
+        	var p=$q.defer();
+        	gapi.client.customerendpoint.insertCustomer(customer).execute(function(resp){
+        		customer.id = resp.result.id;
+        		console.log(resp)
+        		p.resolve(resp.result);
+        	});
+        	return p.promise;
         };
 
         factory.newCustomer = function () {
@@ -159,15 +172,23 @@
         };
 
         factory.updateCustomer = function (customer) {
-            return $http.put(serviceBase + 'putCustomer/' + customer.id, customer).then(function (status) {
-                return status.data;
-            });
+        	var p=$q.defer();
+        	gapi.client.customerendpoint.updateCustomer(customer).execute(function(resp){
+        		customer.id = resp.result.id;
+        		console.log(resp)
+        		p.resolve(resp.result);
+        	});
+        	return p.promise;
         };
 
         factory.deleteCustomer = function (id) {
-            return $http.delete(serviceBase + 'deleteCustomer/' + id).then(function (status) {
-                return status.data;
-            });
+			var p = $q.defer();
+			var requestData = {};
+			requestData.id = id;
+        	gapi.client.customerendpoint.removeCustomer(requestData).execute(function(status){
+        		p.resolve(status.result);
+        	});
+        	return p.promise;
         };
 		
 		return factory;
