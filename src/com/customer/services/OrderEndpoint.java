@@ -86,9 +86,18 @@ public class OrderEndpoint {
 		// Exception
 		// that it is already present
 		if (order.getId() != null) {
-			if (findRecord(order.getId()) != null) {
-				throw new ConflictException("Object already exists");
+			if (order.getId() == 0) {
+				order.setId(null);
+				order.setDate(Calendar.getInstance().getTime());
+			} else {
+				if (findRecord(order.getId()) != null) {
+					throw new ConflictException("Object already exists");
+				}
 			}
+		}
+		Key<Customer> key = Key.create(Customer.class, order.getCustomerId());
+		if (key != null) {
+			order.setCustomerKey(key);
 		}
 		// Since our @Id field is a Long, Objectify will generate a unique value
 		// for us
@@ -108,6 +117,10 @@ public class OrderEndpoint {
 	public Order updateOrder(Order order) throws NotFoundException {
 		if (findRecord(order.getId()) == null) {
 			throw new NotFoundException("Order Record does not exist");
+		}
+		Key<Customer> key = Key.create(Customer.class, order.getCustomerId());
+		if (key != null) {
+			order.setCustomerKey(key);
 		}
 		ofy().save().entity(order).now();
 		return order;

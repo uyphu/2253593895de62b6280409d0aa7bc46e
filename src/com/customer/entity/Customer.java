@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import com.customer.common.AppConstants;
 import com.google.api.server.spi.config.AnnotationBoolean;
 import com.google.api.server.spi.config.ApiResourceProperty;
 import com.googlecode.objectify.Key;
@@ -86,7 +85,9 @@ public class Customer {
     		state = ofy().load().type(State.class).id(stateKey.getId()).get();
     		stateId = state.getId();
     		//orders = ofy().load().type(Order.class).ancestor(this).limit(AppConstants.MAX_RECORDS).list();
-    		orders = ofy().load().type(Order.class).filter("customerKey", this).filter("product", "IPhone 5").limit(AppConstants.MAX_RECORDS).list();
+    		//orders = ofy().load().type(Order.class).filter("customerKey", this).filter("product", "IPhone 5").limit(AppConstants.MAX_RECORDS).list();
+    		orders = ofy().load().type(Order.class).filter("customerKey", this).list();
+    		
 //    		for (Order order : orders) {
 //				System.out.println(order.toString());
 //			}
