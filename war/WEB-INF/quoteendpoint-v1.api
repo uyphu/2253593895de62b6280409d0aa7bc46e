@@ -27,27 +27,6 @@
   "ownerName" : "customer.com",
   "packagePath" : "entity",
   "methods" : {
-    "quoteendpoint.removeQuote" : {
-      "path" : "quote/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.customer.services.QuoteEndpoint.removeQuote",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
     "quoteendpoint.getQuote" : {
       "path" : "quote/{id}",
       "httpMethod" : "GET",
@@ -67,6 +46,27 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "quoteendpoint.removeQuote" : {
+      "path" : "quote/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.customer.services.QuoteEndpoint.removeQuote",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
       }
     },
     "quoteendpoint.listQuote" : {
@@ -177,12 +177,12 @@
       }
     },
     "methods" : {
-      "com.customer.services.QuoteEndpoint.removeQuote" : {
-      },
       "com.customer.services.QuoteEndpoint.getQuote" : {
         "response" : {
           "$ref" : "Quote"
         }
+      },
+      "com.customer.services.QuoteEndpoint.removeQuote" : {
       },
       "com.customer.services.QuoteEndpoint.listQuote" : {
         "response" : {

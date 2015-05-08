@@ -5,9 +5,9 @@
  */
 
 'use strict';
-function init() {
- 	window.init();
-}
+//function init() {
+// 	window.init();
+//}
 (function () {
 
     var injectParams = ['$scope', '$location', '$routeParams', '$window',

@@ -19,6 +19,9 @@
 
         vm.email = null;
         vm.password = null;
+//        vm.email = 'uyphu@yahoo.com';
+//        vm.password = '123456';
+
         vm.errorMessage = null;
         
         $window.init = function() {

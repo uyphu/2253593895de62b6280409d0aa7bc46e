@@ -16,13 +16,8 @@
 	var customersFactory = function($q) {
 		var factory = {}; 
 		factory.init = function() {
-			//return CloudUtils.prototype.loadClouds($q);
-			//return CloudUtils.prototype.loadCustomerClouds($q);
 			if (!AppConstant.ALL_ENDPOINT_LOADED) {
 				var hwdefer=$q.defer();
-//			    var oauthloaddefer=$q.defer();
-//			    var oauthdefer=$q.defer();
-			    
 			    if (!AppConstant.CUSTOMER_ENDPOINT_LOADED) {
 			    	gapi.client.load('customerendpoint', AppConstant.ENDPOINT_VERSION, function() {
 						AppConstant.CUSTOMER_ENDPOINT_LOADED = true;
@@ -189,6 +184,22 @@
         		p.resolve(status.result);
         	});
         	return p.promise;
+        };
+        
+        // is this still used???
+        function orderTotal(order) {
+            return order.quantity * order.price;
+        };
+
+        function ordersTotal(customer) {
+            var total = 0;
+            var orders = customer.orders;
+            var count = orders.length;
+
+            for (var i = 0; i < count; i++) {
+                total += orders[i].orderTotal;
+            }
+            return total;
         };
 		
 		return factory;

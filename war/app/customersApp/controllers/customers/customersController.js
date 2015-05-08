@@ -5,9 +5,9 @@
  */
 
 'use strict';
-function init() {
- 	window.init();
-}
+//function init() {
+// 	window.init();
+//}
 (function (){
 	
 	var injectParams = ['$scope','$location','dataService','$window', '$timeout','$filter'];
@@ -37,14 +37,17 @@ function init() {
 		  	$scope.$apply($scope.initgapi);
 		};
 		$scope.initgapi = function() {
-			dataService.init().then(function(){
-				if (AppConstant.CUSTOMER_ENDPOINT_LOADED) {
-					getCustomersSummary('customersSummary',vm.currentPage - 1,vm.pageSize);
-				}
-			},
-			function(){
-				console.log(ErrorCode.ERROR_INIT_ENDPOINT_SERVICE);
-			});
+			if (!AppConstant.CUSTOMER_ENDPOINT_LOADED) {
+				dataService.init().then(function(){
+					if (AppConstant.CUSTOMER_ENDPOINT_LOADED) {
+						getCustomersSummary('customersSummary',vm.currentPage - 1,vm.pageSize);
+					}
+				},
+				function(){
+					console.log(ErrorCode.ERROR_INIT_ENDPOINT_SERVICE);
+				});
+			}
+			
 		}
 		
 		function loadData() {

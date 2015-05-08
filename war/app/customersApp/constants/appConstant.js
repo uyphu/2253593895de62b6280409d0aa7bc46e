@@ -48,8 +48,11 @@ AppConstant.CUSTOMER_ENDPOINT_LOADED = false;
 /** The Constant STATE_ENDPOINT_LOADED. */
 AppConstant.STATE_ENDPOINT_LOADED = false;
 
+/** The Constant ORDER_ENDPOINT_LOADED. */
+AppConstant.ORDER_ENDPOINT_LOADED = false;
+
 /** The Constant ENDPOINT_LOADED_NUM. */
-AppConstant.ENDPOINT_LOADED_NUM = 3;
+AppConstant.ENDPOINT_LOADED_NUM = 4;
 
 /** The Constant ALL_ENDPOINT_LOADED. */
 AppConstant.ALL_ENDPOINT_LOADED = false;

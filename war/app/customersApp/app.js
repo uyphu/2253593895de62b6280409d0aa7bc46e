@@ -34,6 +34,18 @@
 			          templateUrl: viewBase + 'orders/orders.html',
 			          controllerAs: 'vm'
 			      })
+			      .when('/orderedit/:orderId/:customerId', {
+			          controller: 'OrderEditController',
+			          templateUrl: viewBase + 'orders/orderEdit.html',
+			          controllerAs: 'vm'//,
+			          //secure: true //This route requires an authenticated user
+			      })
+			      .when('/orderedit/:orderId', {
+			          controller: 'OrderEditController',
+			          templateUrl: viewBase + 'orders/orderEdit.html',
+			          controllerAs: 'vm'//,
+			          //secure: true //This route requires an authenticated user
+			      })
 			      .when('/about', {
 			          controller: 'AboutController',
 			          templateUrl: viewBase + 'about.html',
