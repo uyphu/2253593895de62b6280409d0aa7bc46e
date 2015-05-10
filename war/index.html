@@ -118,11 +118,15 @@
     <script src="app/customersApp/controllers/loginController.js"></script>
     
     <script type="text/javascript">
-    	function init () {
-    		window.init();
-    	}
+    function OnLoadCallback() {
+	    	if (AppConstant.API_LOAD_TYPE == 0) {
+	    		AppConstant.API_LOAD_TYPE = 1;
+	    	} else {
+	    		window.init();
+	    	}
+	    }
 	</script>
-    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
 </body>
 </html>
 

@@ -54,7 +54,11 @@
 			if (AppConstant.CUSTOMER_ENDPOINT_LOADED) {
 				getCustomersSummary('customersSummary',vm.currentPage - 1,vm.pageSize);
 			} else {
-				//init();
+				if (AppConstant.API_LOAD_TYPE != 0) {
+					$scope.initgapi();
+				} else {
+					AppConstant.API_LOAD_TYPE = 2;
+				}
 			}
 		}
 		

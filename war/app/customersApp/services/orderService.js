@@ -103,7 +103,7 @@
 			var p = $q.defer();
 			var requestData = {};
 			requestData.id = id;
-        	gapi.client.customerendpoint.removeOrder(requestData).execute(function(status){
+        	gapi.client.orderendpoint.removeOrder(requestData).execute(function(status){
         		p.resolve(status.result);
         	});
         	return p.promise;

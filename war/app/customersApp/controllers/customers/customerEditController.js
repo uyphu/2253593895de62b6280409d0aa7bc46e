@@ -38,17 +38,13 @@
 		
 		$scope.initgapi = function() {
 			if (!AppConstant.CUSTOMER_ENDPOINT_LOADED) {
-				dataService.init().then(function(){
+				dataService.init().then(function() {
 					//getCustomersSummary('customersSummary',vm.currentPage - 1,vm.pageSize);
 				},
 				function(){
 					console.log(ErrorCode.ERROR_INIT_ENDPOINT_SERVICE);
 				});
 			}
-			
-//			if (!AppConstant.STATE_ENDPOINT_LOADED) {
-//				init();
-//			}
 		};
 		
         vm.saveCustomer = function () {
@@ -81,7 +77,7 @@
             });
         };
 
-        function init() {
+        function loadData() {
         	if (AppConstant.STATE_ENDPOINT_LOADED) {
 	            getStates().then(function () {
 	                if (customerId > 0) {
@@ -94,6 +90,12 @@
 	                    });
 	                }
 	            });
+        	} else {
+        		if (AppConstant.API_LOAD_TYPE != 0) {
+					$scope.initgapi();
+				} else {
+					AppConstant.API_LOAD_TYPE = 2;
+				}
         	}
 
             //Make sure they're warned if they made a change but didn't save it
@@ -101,8 +103,6 @@
             //remove the listener (see routeChange() for an example of using it)
             onRouteChangeOff = $scope.$on('$locationChangeStart', routeChange);
         }
-
-        init();
 
         function routeChange(event, newUrl, oldUrl) {
             //Navigate to newUrl if the form isn't dirty
@@ -155,7 +155,7 @@
             }, 3000);
         }
 		
-		init();
+        loadData();
     };
 
     CustomerEditController.$inject = injectParams;

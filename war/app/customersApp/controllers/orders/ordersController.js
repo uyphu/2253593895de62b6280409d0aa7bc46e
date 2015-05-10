@@ -14,8 +14,6 @@
         vm.pageSize = 10;
         vm.currentPage = 1;
 
-        init();
-
         vm.pageChanged = function (page) {
             vm.currentPage = page;
             getCustomers();
@@ -25,7 +23,7 @@
             filterCustomersProducts(vm.searchText);
         };
 
-        function init() {
+        function loadData() {
             //createWatches();
             getCustomers();
         }
@@ -56,6 +54,8 @@
                     $window.alert(error.message);
                 });
         }
+        
+        loadData();
     };
 
     OrdersController.$inject = injectParams;
